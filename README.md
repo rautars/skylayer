@@ -6,7 +6,7 @@ Does this mod support sun or clouds?
 - No. Only plain sky color is supported (no sun, clouds, moon and etc).
 
 ## Usage sample
-Expected to be configured by other mods. Minimal requirements is color set and actived.
+Expected to be configured by other mods. Minimal requirements is color set and activation.
 
 ```
 skycolor.colors = {
