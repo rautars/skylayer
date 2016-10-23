@@ -10,9 +10,9 @@ skycolor = {
 
 	-- Update sky color. If players not specified update sky for all players.
 	update_sky_color = function(players) 
-		timeofday = minetest.get_timeofday()
-		rounded_time = math.floor(timeofday * 1000)
-		color = skycolor.utils.convert_to_rgb(0, 1000, rounded_time, skycolor.colors)
+		local timeofday = minetest.get_timeofday()
+		local rounded_time = math.floor(timeofday * 1000)
+		local color = skycolor.utils.convert_to_rgb(0, 1000, rounded_time, skycolor.colors)
 
 		if players == nil or #players == 0 then
 			players = minetest.get_connected_players()
@@ -35,13 +35,13 @@ skycolor = {
 
 	utils = {
 		convert_to_rgb = function(minval, maxval, current_val, colors)
-			max_index = #colors - 1
-			val = (current_val-minval) / (maxval-minval) * max_index + 1.0
-			index1 = math.floor(val)
-			index2 = math.min(math.floor(val)+1, max_index + 1)
-			f = val - index1
-			c1 = colors[index1]
-			c2 = colors[index2]
+			local max_index = #colors - 1
+			local val = (current_val-minval) / (maxval-minval) * max_index + 1.0
+			local index1 = math.floor(val)
+			local index2 = math.min(math.floor(val)+1, max_index + 1)
+			local f = val - index1
+			local c1 = colors[index1]
+			local c2 = colors[index2]
 			return {r=math.floor(c1.r + f*(c2.r - c1.r)), g=math.floor(c1.g + f*(c2.g-c1.g)), b=math.floor(c1.b + f*(c2.b - c1.b))}
 		end
 	},
