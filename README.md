@@ -9,11 +9,13 @@ Does this mod support sun or clouds?
 Expected to be configured by other mods. Minimal requirements is color set and activation.
 
 ```
-skycolor.colors = {
-          {r=0, g=0, b=0}, 
-          {r=124, g=5, b=74}, 
-          {r=241, g=221, b=56}, 
-          {r=124, g=5, b=74}, 
-          {r=0, g=0, b=0}}
+skycolor.add_layer(
+    "my-color-layer-name",
+    {{r=0, g=0, b=0},
+    {r=83, g=14, b=83},
+    {r=0, g=0, b=0}},
+    true -- force update flag
+)
 skycolor.active = true
 ```
+Force update flag is recomended to use for initial worlds sky color (otherwise it will update with delay).
