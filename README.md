@@ -25,7 +25,7 @@ sl.data.gradient_data.max_value = 1000
 skylayer.add_layer(player_name, sl)
 ```
 
-### Single solid color sly (no smooth transition)
+### Single solid color sky (no smooth transition)
 ```
 local sl = {}
 sl.layer_type = skylayer.SKY_SOLID_COLOR
