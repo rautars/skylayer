@@ -18,6 +18,9 @@ skylayer.SKY_SKYBOX = "skybox"
 -- helps track total dtime
 local timer = 0
 
+local gradient_default_min_value = 0
+local gradient_default_max_value = 1000
+
 -- how often sky will be updated in seconds
 skylayer.update_interval = 4
 
@@ -138,7 +141,13 @@ local get_current_layer_color = function(layer_data)
 	-- min timeofday value 0; max timeofday value 1. So sky color gradient range will be between 0 and 1 * skycolor.max_value.
 	local timeofday = minetest.get_timeofday()
 	local min_val = layer_data.gradient_data.min_value
+	if min_val == nil then
+		min_val = gradient_default_min_value
+	end
 	local max_val = layer_data.gradient_data.max_value
+	if max_val == nil then
+		max_val = gradient_default_max_value
+	end
 	local rounded_time = math.floor(timeofday * max_val)
 	local gradient_colors = layer_data.gradient_data.colors
 	local color = convert_to_rgb(min_val, max_val, rounded_time, gradient_colors)
