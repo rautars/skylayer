@@ -1,5 +1,5 @@
 # Skylayer
-Minetest utility mod to help manage sky transitions. Mod includes smooth transition between users given base sky colors (for plain sky type). Tracks multiple skies definitions and display latest one. Each player have own list of sky layers.
+Minetest utility mod to help manage sky transitions. Mod includes smooth transition between users given base sky colors (for plain sky type). Tracks multiple sky definitions and display latest one. Each player have own list of sky layers.
 
 ## FAQ
 Does this mod support sun or clouds?
