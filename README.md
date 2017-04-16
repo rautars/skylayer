@@ -6,7 +6,7 @@ Does this mod support sun or clouds?
 - No. Only plain sky color and skybox images based sky is supported (no sun, clouds, moon and etc).
 
 ## Usage samples
-Expected to be configured by other mods. See demo.lua for detailed examples. Demo provides few test commands. Demo by default is disabled and can be enabled by uncommenting file include inside init.lua.
+Expected to be configured by other mods. See demo.lua for detailed examples with chat commands. Demo by default is disabled and can be enabled by uncommenting file include inside init.lua.
 
 ### Gradient supported sky definition sample
 ```
