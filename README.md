@@ -18,25 +18,21 @@ sl.sky_data = {
 
 	-- These optional parameter are skylayer specific,
 	-- if set they may override parameters above.
-	gradient_colors = {{r=68, g=34, b=153}, {r=68, g=68, b=221}}, -- table, color points used to create gradient based on world time, if set bgcolor will be overrided by color generated from gradient
-	gradient_min_value = 0, -- number, works like gradient start point offset from starting point
-	gradient_max_value = 1000, -- number, works like gradient end point from starting point
+	gradient_colors = {{r=68, g=34, b=153}, {r=68, g=68, b=221}} -- table, color points used to create gradient based on world time, if set bgcolor will be overrided by color generated from gradient
 }
 sl.clouds_data = {
 	-- These optional parameters used for minetest set_clouds api,
-		-- please refer MT lua_api docs for paramater details.
-		density = 0.4, -- number, clouds density from 0 (no clouds) to 1 (full clouds).
-		color = "#fff0f0e5", -- string, basic cloud color with alpha channel.
-		ambient = "#000000", -- string, cloud color lower bound.
-		height = 120, -- number, cloud height
-		thickness = 16, -- number, cloud thickness in nodes.
-		speed = {x=5, z=-40}, -- table, speed + direction in nodes per second.
+	-- please refer MT lua_api docs for paramater details.
+	density = 0.4, -- number, clouds density from 0 (no clouds) to 1 (full clouds).
+	color = "#fff0f0e5", -- string, basic cloud color with alpha channel.
+	ambient = "#000000", -- string, cloud color lower bound.
+	height = 120, -- number, cloud height
+	thickness = 16, -- number, cloud thickness in nodes.
+	speed = {x=5, z=-40}, -- table, speed + direction in nodes per second.
 
-		-- These optional parameter are skylayer specific,
-		-- if set they may override parameters above.
-		gradient_colors = {{r=68, g=34, b=153}, {r=68, g=68, b=221}}, -- table, color points used to create gradient based on world time, if set color will be overrided by color generated from gradient
-		gradient_min_value = 0, -- number, works like gradient start point offset from starting point
-		gradient_max_value = 1000, -- number, works like gradient end point from starting point
+	-- These optional parameter are skylayer specific,
+	-- if set they may override parameters above.
+	gradient_colors = {{r=68, g=34, b=153}, {r=68, g=68, b=221}} -- table, same as sky gradient color, if set color will be overrided by color generated from gradient
 }
 skylayer.add_layer(player_name, sl)
 
