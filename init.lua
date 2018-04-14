@@ -9,4 +9,4 @@ local modpath = minetest.get_modpath("skylayer");
 dofile(modpath.."/api.lua")
 
 -- uncomment to enable demo
-dofile(modpath.."/demo.lua")
+--dofile(modpath.."/demo.lua")
