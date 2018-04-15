@@ -52,7 +52,7 @@ skylayer.remove_layer = function(player_name, layer_name)
 			if #player_data.skylayers == 0 then
 				local player = core.get_player_by_name(player_name)
 				if player ~= nil then
-					core.set_default_sky(player)
+					core.reset_sky(player)
 				end
 			end
 			return
