@@ -47,7 +47,7 @@ core.remove_player = function(player_name)
 	end
 	for k, player_data in ipairs(core.sky_players) do
 		if player_data.id == player_name then
-			set_default_sky(player_data.player)
+			reset_sky(player_data.player)
 			table.remove(core.sky_players, k)
 			return
 		end
@@ -95,8 +95,16 @@ core.create_new_player_data = function(player_name)
 end
 
 -- sets default / regular sky for player
+core.reset_sky = function(player)
+	core.set_default_sky(player)
+	core.set_default_clouds(player)
+end
+
 core.set_default_sky = function(player)
 	player:set_sky(nil, "regular", nil)
+end
+
+core.set_default_clouds = function(player)
 	player:set_clouds(core.default_clouds)
 end
 
@@ -162,8 +170,17 @@ core.get_current_cloud_color = function(gradient_colors, min_val, max_val)
 	return colorise.rgb2hex({rgb_color.r, rgb_color.g, rgb_color.b}) 
 end
 
-core.update_sky_details = function(player, sky_data, clouds_default)
-	if sky_data == nil then return end
+core.update_sky_details = function(player, sky_layer)
+	local sky_data = sky_layer.sky_data
+
+	if sky_data == nil then 
+		if sky_layer.reset_defaults == true then
+			core.set_default_sky(player)
+			sky_layer.reset_defaults = false
+		end
+		return
+	end
+
 	local sky_color = core.get_current_layer_color(
 		sky_data.gradient_colors, 
 		sky_data.gradient_min_value,
@@ -176,15 +193,24 @@ core.update_sky_details = function(player, sky_data, clouds_default)
 	if sky_data.type ~= nil then
 		sky_type = sky_data.type
 	end
-	local clouds = clouds_default
+	local clouds = sky_layer.clouds_data ~= nil
 	if sky_data.clouds ~= nil then
 		clouds = sky_data.clouds
 	end
 	player:set_sky(bgcolor, sky_type, sky_data.textures, clouds)	
 end
 
-core.update_clouds_details = function(player, clouds_data)
-	if clouds_data == nil then return end
+core.update_clouds_details = function(player, sky_layer)
+	clouds_data = sky_layer.clouds_data
+
+	if clouds_data == nil then 
+		if sky_layer.reset_defaults == true then
+			core.set_default_clouds(player)
+			sky_layer.reset_defaults = false
+		end
+		return
+	end
+
 	local cloud_color = core.get_current_cloud_color(
 		clouds_data.gradient_colors, 
 		clouds_data.gradient_min_value,
@@ -214,10 +240,15 @@ core.update_sky = function(player, timer)
 		skylayer.update_interval = core.settings.update_interval
 	end
 
+	if player_data.last_active_layer == nil or player_data.last_active_layer ~= current_layer.name then
+		current_layer.reset_defaults = true
+	end
+	player_data.last_active_layer = current_layer.name
+
 	if current_layer.updated == false or core.timer >= skylayer.update_interval then
 		current_layer.updated = os.time()
-		core.update_sky_details(player, current_layer.sky_data, current_layer.clouds_data ~= nil)
-		core.update_clouds_details(player, current_layer.clouds_data)
+		core.update_sky_details(player, current_layer)
+		core.update_clouds_details(player, current_layer)
 	end
 end
 
